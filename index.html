@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills-UP! × Richtungswechsel — Impact Investor Pitch 2026 (EN)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #070e1c;
+      --dark2:   #0d1829;
+      --gold:    #f59e0b;
+      --gold2:   #fbbf24;
+      --rw-green: #8DC63F;
+      --rw-dark:  #1B5C5C;
+      --money:   #22c55e;
+      --red:     #ef4444;
+      --slate:   #64748b;
+      --light:   #f8fafc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--dark);
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .slide.visible .eyebrow    { animation: fadeUp .5s ease both; }
+    .slide.visible h1,
+    .slide.visible h2          { animation: fadeUp .5s .1s ease both; }
+    .slide.visible p.lead,
+    .slide.visible .sec-sub    { animation: fadeUp .5s .2s ease both; }
+    .slide.visible .hm-row,
+    .slide.visible .prob-row,
+    .slide.visible .roi-main,
+    .slide.visible .prog-grid,
+    .slide.visible .pilot-grid,
+    .slide.visible .team-grid,
+    .slide.visible .bud-grid   { animation: fadeUp .5s .3s ease both; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 48px;
+      background: rgba(10,15,30,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-name  { font-size: 0.95rem; font-weight: 800; color: #fff; }
+    .nav-name .y { color: var(--gold); }
+    .nav-name .t { color: var(--rw-dark); }
+    .nav-sep   { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+    .nav-tag   {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold);
+      background: rgba(141,198,63,0.1); border: 1px solid rgba(141,198,63,0.25);
+      padding: 3px 10px; border-radius: 999px;
+    }
+    .nav-dots  { display: flex; gap: 6px; align-items: center; }
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); cursor: pointer; transition: all .25s;
+    }
+    .dot.active { background: var(--gold); transform: scale(1.5); }
+
+    /* ── SLIDES ── */
+    .slide {
+      min-height: 100vh;
+      padding: 96px 80px 72px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .slide-num {
+      position: absolute; bottom: 20px; right: 40px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+      color: rgba(255,255,255,0.18);
+    }
+    .slide-num.dk { color: rgba(0,0,0,0.18); }
+
+    /* backgrounds */
+    .s1 { background: radial-gradient(ellipse 80% 60% at 70% 30%, #0d2347 0%, #070e1c 70%); }
+    .s2 { background: #fff; }
+    .s3 { background: radial-gradient(ellipse 80% 60% at 30% 70%, #1a1040 0%, #070e1c 70%); }
+    .s4 { background: linear-gradient(160deg, #f8f7ff 0%, #eef2ff 100%); }
+    .s5 { background: radial-gradient(ellipse 70% 50% at 60% 40%, #0d2030 0%, #070e1c 70%); }
+    .s6 { background: #fff; }
+    .s7 { background: radial-gradient(ellipse 80% 60% at 20% 80%, #0a1f1a 0%, #070e1c 70%); }
+    .s8 { background: radial-gradient(ellipse 90% 70% at 50% 50%, #0d3d3d 0%, #071a1a 50%, #070e1c 100%); }
+
+    /* ── TYPOGRAPHY ── */
+    .eyebrow {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .ey-green  { color: var(--gold2); }
+    .ey-yellow { color: var(--gold); }
+    .ey-slate  { color: var(--slate); }
+    .ey-teal   { color: var(--rw-dark); }
+
+    h1.hero-h {
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 900; line-height: 1.06;
+      letter-spacing: -1.5px; color: #fff;
+      margin-bottom: 20px;
+    }
+    h1.hero-h .acc-g { color: var(--gold); }
+    h1.hero-h .acc-y { color: var(--gold); }
+
+    h2.sec-h {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.5px; margin-bottom: 32px;
+    }
+    h2.sec-h.light { color: #fff; }
+    h2.sec-h.dark  { color: #0f172a; }
+
+    p.lead { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 560px; margin-bottom: 48px; }
+
+    /* ── HERO METRICS ── */
+    .hm-row { display: flex; gap: 0; flex-wrap: wrap; }
+    .hm {
+      padding: 0 36px 0 0; margin-right: 36px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hm:last-child { border-right: none; }
+    .hm .big  { font-size: 3rem; font-weight: 900; line-height: 1; color: var(--gold); }
+    .hm .big.y{ color: var(--gold); }
+    .hm .lbl  { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+    /* ── PROBLEM CARDS ── */
+    .prob-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 28px; }
+    .pc {
+      border-radius: 16px; padding: 28px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    }
+    .pc-red    { background: #fff1f1; border-top: 4px solid var(--red); }
+    .pc-orange { background: #fff8f0; border-top: 4px solid var(--gold); }
+    .pc-slate  { background: #f8fafc; border-top: 4px solid #94a3b8; }
+    .pc .stat  { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+    .pc-red    .stat { color: var(--red); }
+    .pc-orange .stat { color: var(--gold); }
+    .pc-slate  .stat { color: #64748b; }
+    .pc h4 { font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .pc p  { font-size: 0.82rem; color: #64748b; }
+    .prob-quote {
+      background: #f8fafc; border-left: 4px solid var(--red);
+      border-radius: 0 12px 12px 0; padding: 18px 24px;
+    }
+    .prob-quote q { font-size: 0.92rem; font-style: italic; color: #374151; }
+    .prob-quote cite { display: block; font-size: 0.75rem; color: #94a3b8; margin-top: 6px; }
+
+    /* ── ROI SLIDE ── */
+    .roi-main {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      align-items: start; margin-bottom: 32px;
+    }
+    .roi-number-block {
+      background: rgba(141,198,63,0.08);
+      border: 1px solid rgba(141,198,63,0.2);
+      border-radius: 20px; padding: 36px;
+      text-align: center;
+    }
+    .roi-number-block .roi-mult {
+      font-size: 5rem; font-weight: 900; line-height: 1;
+      color: var(--gold); letter-spacing: -2px;
+    }
+    .roi-number-block .roi-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 10px; }
+    .roi-breakdown { display: flex; flex-direction: column; gap: 14px; }
+    .roi-row {
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.05); border-radius: 12px; padding: 14px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .roi-row .rr-label { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+    .roi-row .rr-val   { font-size: 1.1rem; font-weight: 900; }
+    .rr-red   { color: var(--red); }
+    .rr-green { color: var(--gold); }
+    .roi-sources {
+      font-size: 0.73rem; color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px;
+    }
+
+    /* ── PROGRAM ── */
+    .prog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 24px; }
+    .pgc {
+      background: #fff; border-radius: 16px; padding: 24px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06); border-top: 3px solid var(--rw-dark);
+    }
+    .pgc .icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .pgc h4 { font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .pgc p  { font-size: 0.82rem; color: #64748b; }
+    .tags-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 4px 12px; border-radius: 999px; font-size: 0.76rem; font-weight: 600; }
+    .tag-g { background: #e0e7ff; color: #3730a3; }
+    .tag-b { background: #dbeafe; color: #1e40af; }
+
+    /* ── PILOT ── */
+    .pilot-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-bottom: 28px; }
+    .pil {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 24px; text-align: center;
+    }
+    .pil .pil-n { font-size: 2.4rem; font-weight: 900; color: var(--rw-dark); line-height: 1; }
+    .pil .pil-l { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 6px; }
+    .timeline-strip {
+      display: flex; gap: 0; align-items: stretch;
+    }
+    .ts-item {
+      flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      padding: 16px 18px; position: relative;
+    }
+    .ts-item:first-child { border-radius: 12px 0 0 12px; }
+    .ts-item:last-child  { border-radius: 0 12px 12px 0; }
+    .ts-item .ts-year  { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; color: var(--rw-dark); text-transform: uppercase; margin-bottom: 4px; }
+    .ts-item .ts-event { font-size: 0.82rem; color: rgba(255,255,255,0.65); }
+    .ts-item.active { background: rgba(141,198,63,0.1); border-color: rgba(34,197,94,0.3); }
+    .ts-item.active .ts-year { color: var(--gold); }
+    .ts-item.active .ts-event { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+    /* ── TEAM ── */
+    .team-org-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;
+    }
+    .team-org-label.y { color: var(--gold); border-color: #fef3c7; }
+    .team-org-label.t { color: var(--rw-dark); border-color: #ccfbf1; }
+    .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 24px; }
+    .tc {
+      background: #fff; border-radius: 16px; padding: 22px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .av {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    .av-y { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+    .av-b { background: linear-gradient(135deg,#3b82f6,#8b5cf6); }
+    .av-t { background: linear-gradient(135deg,var(--rw-dark),#3b82f6); }
+    .av-g { background: linear-gradient(135deg,#22c55e,var(--rw-dark)); }
+    .tc h4 { font-size: 0.92rem; font-weight: 800; color: #0f172a; }
+    .tc .role { font-size: 0.72rem; font-weight: 600; margin-bottom: 4px; }
+    .tc p  { font-size: 0.78rem; color: #64748b; }
+
+    /* ── FUNDING ── */
+    .fund-hero { text-align: center; margin-bottom: 40px; }
+    .fund-hero .f-ask { font-size: clamp(4rem,10vw,7rem); font-weight: 900; line-height: 1; color: var(--gold); letter-spacing: -3px; }
+    .fund-hero .f-sub { font-size: 0.95rem; color: rgba(255,255,255,0.45); margin-top: 8px; }
+    .bud-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+    .bc {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 22px;
+    }
+    .bc .bc-icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .bc h4 { font-size: 0.85rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .bc .bc-amt { font-size: 1.4rem; font-weight: 900; color: var(--gold); }
+    .bc p  { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 4px; }
+    .impact-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+    .ir {
+      background: rgba(141,198,63,0.08); border: 1px solid rgba(141,198,63,0.2);
+      border-radius: 14px; padding: 18px 22px; text-align: center;
+    }
+    .ir .ir-val { font-size: 1.6rem; font-weight: 900; color: var(--gold); }
+    .ir .ir-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+    /* ── CTA ── */
+    .cta-big { font-size: clamp(2.2rem,5vw,3.8rem); font-weight: 900; line-height: 1.06; color: #fff; margin-bottom: 20px; letter-spacing: -1px; }
+    .cta-sub { font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 540px; margin-bottom: 44px; }
+    .cta-contacts { display: flex; gap: 40px; flex-wrap: wrap; }
+    .cc .cc-org { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+    .cc a { display: block; font-size: 0.95rem; font-weight: 600; color: #fff; text-decoration: none; margin-bottom: 2px; opacity: 0.85; }
+    .cc a:hover { opacity: 1; text-decoration: underline; }
+    .cta-sep { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
+    /* ── UTIL ── */
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px; padding: 5px 14px;
+      font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.65);
+    }
+    .chip .cdot { width: 6px; height: 6px; border-radius: 50%; background: var(--money); }
+
+    @media (max-width: 768px) {
+      .slide { padding: 80px 24px 60px; }
+      .prob-row, .prog-grid, .pilot-grid, .bud-grid,
+      .team-grid, .impact-row, .roi-main { grid-template-columns: 1fr; }
+      .hm { padding: 0 20px 0 0; margin-right: 20px; }
+      .timeline-strip { flex-direction: column; }
+      .ts-item { border-radius: 12px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-name">Skills-<span class="y">UP!</span> <span style="color:rgba(255,255,255,0.2)">×</span> <span class="t">Richtungs</span>wechsel</div>
+    <div class="nav-sep"></div>
+    <div class="nav-tag">Impact Pitch 2026</div>
+  </div>
+  <div class="nav-dots" id="navDots"></div>
+</nav>
+
+<!-- ════════════════════════════
+  1 · HERO
+════════════════════════════ -->
+<section class="slide s1">
+  <!-- decorative blobs -->
+  <svg style="position:absolute;top:-80px;right:-120px;width:600px;height:600px;opacity:0.07;pointer-events:none" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><circle cx="300" cy="300" r="300" fill="#8DC63F"/></svg>
+  <svg style="position:absolute;bottom:-100px;right:200px;width:300px;height:300px;opacity:0.05;pointer-events:none" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><circle cx="150" cy="150" r="150" fill="#f59e0b"/></svg>
+  <div class="eyebrow ey-green">Partnership · Vienna 2026</div>
+  <h1 class="hero-h">
+    Financial Education in Detention<br>
+    <span class="acc-g">prevents reoffending.</span><br>
+    <span class="acc-y">Measurable.</span>
+  </h1>
+  <p class="lead">
+    Skills-UP! × Richtungswechsel bring proven financial education directly to incarcerated youth — creating the first scientifically measurable ROI for impact investors.
+  </p>
+  <div class="hm-row">
+    <div class="hm">
+      <div class="big y">€50k</div>
+      <div class="lbl">Funding Sought</div>
+    </div>
+    <div class="hm">
+      <div class="big">1.800</div>
+      <div class="lbl">Young People with Skills-UP!</div>
+    </div>
+    <div class="hm">
+      <div class="big">✓</div>
+      <div class="lbl">Pilot Completed Apr–May 2026</div>
+    </div>
+    <div class="hm">
+      <div class="big">~6×</div>
+      <div class="lbl">Social Return on Investment</div>
+    </div>
+  </div>
+  <div class="slide-num">1 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  2 · PROBLEM
+════════════════════════════ -->
+<section class="slide s2">
+  <div class="eyebrow ey-slate">The Problem</div>
+  <h2 class="sec-h dark">Young People in Detention are<br>Austria's Most Financially Vulnerable Group</h2>
+
+  <div class="prob-row">
+    <div class="pc pc-red">
+      <div class="stat">70%</div>
+      <h4>Reoffending Rate</h4>
+      <p>7 out of 10 young people in detention reoffend — lack of financial knowledge and over-indebtedness are key drivers. (Statistik Austria)</p>
+    </div>
+    <div class="pc pc-orange">
+      <div class="stat">Jedes</div>
+      <h4>Offence Has a Link to Money</h4>
+      <p>Whether theft, fraud or assault — behind almost every offence lies financial hardship, lack of prospects or missing basic financial knowledge.</p>
+    </div>
+    <div class="pc pc-slate">
+      <div class="stat">0</div>
+      <h4>Structured Financial Education</h4>
+      <p>No Austrian youth detention facility has a standardised, evaluated financial education programme for young people in detention.</p>
+    </div>
+  </div>
+
+  <div class="prob-quote">
+    <q>Every incarcerated child is evidence of systemic failure — and that failure is often compounded by detention.</q>
+    <cite>— Henrietta Fore, former Executive Director, UNICEF</cite>
+  </div>
+  <div class="slide-num dk">2 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  3 · ROI & SROI
+════════════════════════════ -->
+<section class="slide s3">
+  <div class="eyebrow ey-green">Return on Investment</div>
+  <h2 class="sec-h light">Every euro invested<br>saves six.</h2>
+
+  <div class="roi-main">
+    <div class="roi-number-block">
+      <div class="roi-mult">~6×</div>
+      <div style="font-size:1.1rem;font-weight:700;color:rgba(255,255,255,0.6);margin-top:6px;">Social Return on Investment</div>
+      <div class="roi-sub">Prevented detention & prosecution costs<br>at 20% reoffending reduction<br>vs. programme costs (conservative estimate)</div>
+    </div>
+
+    <div class="roi-breakdown">
+      <div class="roi-row">
+        <span class="rr-label">🔴 🔴 Detention costs per person (avg. 6 months, €162/day)</span>
+        <span class="rr-val rr-red">~€29.000 / Person</span>
+      </div>
+      <div class="roi-row">
+        <span class="rr-label">🔴 🔴 Prosecution + proceedings + probation (avg.)</span>
+        <span class="rr-val rr-red">~€8.000 / Fall</span>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+      <div class="roi-row" style="background:rgba(141,198,63,0.1);border-color:rgba(141,198,63,0.25);">
+        <span class="rr-label">🟢 🟢 Finance Lab cost per person (€50k ÷ 60)</span>
+        <span class="rr-val rr-green">~€833</span>
+      </div>
+      <div class="roi-row" style="background:rgba(141,198,63,0.06);border-color:rgba(141,198,63,0.15);">
+        <span class="rr-label">🟢 🟢 Savings at 20% fewer reoffences (12 persons)</span>
+        <span class="rr-val rr-green">~€444.000</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="roi-sources">
+    Sources: Austrian Ministry of Justice — €162/custody day (2024) · Statistik Austria reoffending statistics · ASB Debt Report 2025 · SROI methodology per Social Value UK · Conservative own projection
+  </div>
+  <div class="slide-num">3 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  4 · PROGRAMM
+════════════════════════════ -->
+<section class="slide s4">
+  <div class="eyebrow" style="color:var(--rw-dark);">The Programme</div>
+  <h2 class="sec-h dark">Finance Lab —<br>3 Modules, 6 Weeks, Measurable</h2>
+
+  <div class="prog-grid">
+    <div class="pgc">
+      <div class="icon">🛡️</div>
+      <h4>Module 1 · Protection</h4>
+      <p>Bank accounts, pay slips, debt traps, instalment traps, debt collection. Immediately applicable after release. Goal: no new debt spiral.</p>
+    </div>
+    <div class="pgc" style="border-top-color:var(--gold);">
+      <div class="icon">🧭</div>
+      <h4>Module 2 · Orientation</h4>
+      <p>Budget planning, emergency savings, housing after detention, knowing state support. Goal: financial stability in the first year.</p>
+    </div>
+    <div class="pgc" style="border-top-color:var(--money);">
+      <div class="icon">🚀</div>
+      <h4>Module 3 · Perspective</h4>
+      <p>Savings goals, legal income, self-efficacy, the world of work. Linked to career & life planning. Goal: long-term re-integration.</p>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 2px 16px rgba(0,0,0,0.06);">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#94a3b8;margin-bottom:12px;">Adapted from Skills-UP! curriculum — scientifically accompanied, impact measurable</div>
+    <div class="tags-row">
+      <span class="tag tag-g">Bank Account</span><span class="tag tag-g">Pay Slip</span>
+      <span class="tag tag-g">Debt Traps</span><span class="tag tag-g">Instalment Buying</span>
+      <span class="tag tag-g">Budgeting</span><span class="tag tag-b">Emergency Fund</span>
+      <span class="tag tag-b">Housing After Detention</span><span class="tag tag-b">State Support</span>
+      <span class="tag tag-b">Savings Goals</span><span class="tag tag-b">Self-Efficacy</span>
+    </div>
+  </div>
+  <div class="slide-num dk">4 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  5 · PILOT & TRACTION
+════════════════════════════ -->
+<section class="slide s5">
+  <div class="eyebrow ey-teal">Pilot Completed — Traction Established</div>
+  <h2 class="sec-h light">The door is open.<br>We need resources, not permission.</h2>
+
+  <div class="pilot-grid">
+    <div class="pil">
+      <div class="pil-n">Apr–Mai<br>2026</div>
+      <div class="pil-l">Pilot Project Completed ✓</div>
+    </div>
+    <div class="pil">
+      <div class="pil-n">2×</div>
+      <div class="pil-l">Locations: Vienna + Linz planned</div>
+    </div>
+    <div class="pil">
+      <div class="pil-n">1.800</div>
+      <div class="pil-l">Young People with Skills-UP! erreicht</div>
+    </div>
+    <div class="pil">
+      <div class="pil-n">4</div>
+      <div class="pil-l">Trainers Active</div>
+    </div>
+  </div>
+
+  <div class="timeline-strip">
+    <div class="ts-item">
+      <div class="ts-year">2022–25</div>
+      <div class="ts-event">Skills-UP! scaled to 1,800 young people · measurable behavioural change</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">Okt 2025</div>
+      <div class="ts-event">Richtungswechsel study trips + international inspirational practices</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">Nov 2025</div>
+      <div class="ts-event">First knowledge spaces & professional staff workshops</div>
+    </div>
+    <div class="ts-item active">
+      <div class="ts-year">Apr–Mai 2026 ✅</div>
+      <div class="ts-event">✅ ✅ Finance Lab pilot completed · Vienna</div>
+    </div>
+    <div class="ts-item">
+      <div class="ts-year">2026–27</div>
+      <div class="ts-event">With €50k → Curriculum · professional trainers · impact measurement</div>
+    </div>
+  </div>
+  <div class="slide-num">5 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  6 · TEAM
+════════════════════════════ -->
+<section class="slide s6">
+  <div class="eyebrow ey-slate">The Team</div>
+  <h2 class="sec-h dark">Proven delivery strength<br>on both sides</h2>
+
+  <div class="team-org-label y">Skills-UP! — Financial Education & Curriculum</div>
+  <div class="team-grid" style="margin-bottom:20px;">
+    <div class="tc">
+      <div class="av av-y">MW</div>
+      <div>
+        <h4>Marina Winkler</h4>
+        <div class="role" style="color:#d97706;">Co-Founder · Chair</div>
+        <p>EdTech & Finance Education. Budget management, strategic partnerships. Top 3 MEGA Education Foundation 2026 · EFA Hackathon Winner.</p>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="av av-b">SB</div>
+      <div>
+        <h4>Stefan Bauer</h4>
+        <div class="role" style="color:#d97706;">Co-Founder · Deputy Chair</div>
+        <p>Digital platform & content strategy. Finance Lab curriculum development.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-org-label t">Richtungswechsel — Access, Network & Systemic Impact</div>
+  <div class="team-grid">
+    <div class="tc">
+      <div class="av av-t">TH</div>
+      <div>
+        <h4>Tamara Höfer</h4>
+        <div class="role" style="color:var(--rw-dark);">CEO & Board Member</div>
+        <p>Criminal justice system reform, international networking, lobbying BMJ. Pilot project lead.</p>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="av av-g">CM</div>
+      <div>
+        <h4>Claudia Müllauer</h4>
+        <div class="role" style="color:var(--rw-dark);">Board Member · Focal Point Child Protection</div>
+        <p>Board Member & Focal Point for Child Protection, Richtungswechsel-AT. Since May 2026, Vienna.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num dk">6 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  7 · FUNDING
+════════════════════════════ -->
+<section class="slide s7">
+  <div class="eyebrow ey-green">Grant Application</div>
+  <h2 class="sec-h light" style="margin-bottom:24px;">€50,000 — targeted investment,<br>maximum impact.</h2>
+
+  <div class="bud-grid">
+    <div class="bc">
+      <div class="bc-icon">👩‍🏫</div>
+      <h4>Trainer Fees</h4>
+      <div class="bc-amt">€25.000</div>
+      <p>4 professional trainers · 6 weeks · Vienna + Linz</p>
+    </div>
+    <div class="bc">
+      <div class="bc-icon">📐</div>
+      <h4>Curriculum Development</h4>
+      <div class="bc-amt">€15.000</div>
+      <p>Adaptation of Finance Lab for youth in detention, trainer handbook</p>
+    </div>
+    <div class="bc">
+      <div class="bc-icon">📊</div>
+      <h4>Impact Measurement</h4>
+      <div class="bc-amt">€6.000</div>
+      <p>Pre/post-tests, follow-up after release, scientific accompaniment</p>
+    </div>
+    <div class="bc">
+      <div class="bc-icon">🛠️</div>
+      <h4>Materials & Equipment</h4>
+      <div class="bc-amt">€4.000</div>
+      <p>Learning materials, on-site equipment</p>
+    </div>
+  </div>
+
+  <div class="impact-row">
+    <div class="ir">
+      <div class="ir-val">60+</div>
+      <div class="ir-lbl">Young people in detention directly reached</div>
+    </div>
+    <div class="ir">
+      <div class="ir-val">≤€833</div>
+      <div class="ir-lbl">Cost per Person</div>
+    </div>
+    <div class="ir">
+      <div class="ir-val">~6×</div>
+      <div class="ir-lbl">SROI at 20% reoffending reduction</div>
+    </div>
+  </div>
+  <div class="slide-num">7 / 8</div>
+</section>
+
+<!-- ════════════════════════════
+  8 · CTA
+════════════════════════════ -->
+<section class="slide s8">
+  <h2 class="cta-big">
+    €50,000 today<br>
+    enables €444,000<br>
+    in societal savings.
+  </h2>
+  <p class="cta-sub">
+    Your impact investment funds the first evaluated financial education programme for young people in detention —
+    and lays the foundation for a national rollout from 2027.
+  </p>
+  <div class="cta-contacts">
+    <div class="cc">
+      <div class="cc-org">Skills-UP!</div>
+      <a href="mailto:info@digitale-zukunftsbildung.eu">info@digitale-zukunftsbildung.eu</a>
+      <a href="https://digitale-zukunftsbildung.eu">digitale-zukunftsbildung.eu</a>
+    </div>
+    <div class="cta-sep"></div>
+    <div class="cc">
+      <div class="cc-org">Richtungswechsel</div>
+      <a href="mailto:info@richtungswechsel.or.at">info@richtungswechsel.or.at</a>
+      <a href="https://www.richtungswechsel.or.at/">richtungswechsel.or.at</a>
+    </div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,0.3);">8 / 8</div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const container = document.getElementById('navDots');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth' }));
+    container.appendChild(d);
+  });
+
+  const dots = document.querySelectorAll('.dot');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = [...slides].indexOf(e.target);
+        dots.forEach((d, j) => d.classList.toggle('active', i === j));
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.4 });
+  slides.forEach(s => io.observe(s));
+  // Trigger first slide immediately
+  slides[0].classList.add('visible');
+
+  document.addEventListener('keydown', e => {
+    const cur = [...slides].findIndex(s => {
+      const r = s.getBoundingClientRect();
+      return r.top <= window.innerHeight / 2 && r.bottom >= window.innerHeight / 2;
+    });
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowRight') && cur < slides.length - 1)
+      slides[cur + 1].scrollIntoView({ behavior: 'smooth' });
+    if ((e.key === 'ArrowUp' || e.key === 'ArrowLeft') && cur > 0)
+      slides[cur - 1].scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
